@@ -270,6 +270,21 @@ public class loanApp {
 		insertStmt.executeUpdate();
 		
 	}
+	public static void addLoanPersonal(int loan_ID) throws SQLException
+	{
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
+		
+		Scanner input = new Scanner(System.in);
+	
+		System.out.print("Please Enter the Purpose for the Loan: ");
+		String purpose = input.nextLine();
+		
+		insertStmt = conn.prepareStatement("INSERT INTO Loan " + "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+		insertStmt.setInt(1, loan_ID);
+		insertStmt.setString(2, purpose);
+		insertStmt.executeUpdate();
+	}
 	
 	// Peter
 	public static void editLoan() throws SQLException{}
