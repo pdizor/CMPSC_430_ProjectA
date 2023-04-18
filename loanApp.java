@@ -63,6 +63,7 @@ public class loanApp {
 	}
 	// Jacob
 	public static void addCustomer() throws SQLException{
+		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		PreparedStatement insertStmt = null;
 		
@@ -82,6 +83,7 @@ public class loanApp {
 	}
 	// Jacob
 	public static void editCustomer() throws SQLException{
+		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		Statement updateStmt = null;
 		
@@ -101,6 +103,7 @@ public class loanApp {
 	}
 	// Jacob
 	public static void removeCustomer() throws SQLException{
+		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		PreparedStatement deleteStmt1 = null;
 		PreparedStatement deleteStmt2 = null;
@@ -124,19 +127,19 @@ public class loanApp {
 		
 	}
 	//Jacob
-	public static void searchCustomer() throws SQLException
-	{
-	Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
-        Statement stmt = conn.createStatement();
-        System.out.println("Input ID of Customer you want to see information of: ");
-        Scanner input3 = new Scanner(System.in);
-		int inputs = input3.nextInt();
-        ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
+	public static void searchCustomer() throws SQLException {
+		
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+        	Statement stmt = conn.createStatement();
+        	System.out.println("Input ID of Customer you want to see information of: ");
+        	Scanner input = new Scanner(System.in);
+		int inputs = input.nextInt();
+       		ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
 
-        while (rs.next()) {
-           System.out.println("\nID: " + rs.getInt("ID"));
-           System.out.println(", Name: " + rs.getString("name") + "\n");
-        }
+        	while (rs.next()) {
+           	System.out.println("\nID: " + rs.getInt("ID"));
+           	System.out.println(", Name: " + rs.getString("name") + "\n");
+        	}
 	}
 	// Jacob
 	public static void browseCustomer() throws SQLException {
