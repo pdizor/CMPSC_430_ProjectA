@@ -211,7 +211,31 @@ public class loanApp {
 		else if (input_loan_type == 3) addLoanPersonal(loan_ID);
 	
 	}
-	
+		public static void addLoanAuto (int loan_ID) throws SQLException
+	{
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
+		
+		Scanner input = new Scanner(System.in);
+		
+		
+		
+		System.out.print("Please Enter the Make of the Vehicle: ");
+		String make = input.nextLine().trim();
+		
+		System.out.print("Please Enter the Model of the Vehicle: ");
+		String model = input.nextLine().trim();
+		
+		System.out.print("Please enter the Manufacture Year YYYY: ");
+		String year = input.nextLine().trim();
+		
+		insertStmt = conn.prepareStatement("INSERT INTO Loan " + "VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		insertStmt.setInt(1, loan_ID);
+		insertStmt.setString(2, make);
+		insertStmt.setString(3, model);
+		insertStmt.setString(4, year);
+		insertStmt.executeUpdate();
+	}
 	// Peter
 	public static void editLoan() throws SQLException{}
 	// Peter
