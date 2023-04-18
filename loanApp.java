@@ -131,26 +131,26 @@ public class loanApp {
 		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
         	Statement stmt = conn.createStatement();
-        	System.out.println("Input ID of Customer you want to see information of: ");
+        	System.out.println("Input the ID of customer you want to see information of: ");
         	Scanner input = new Scanner(System.in);
 		int inputs = input.nextInt();
-       		ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
+        	ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
 
-        	while (rs.next()) {
-           	System.out.println("\nID: " + rs.getInt("ID"));
-           	System.out.println(", Name: " + rs.getString("name") + "\n");
-        	}
+        	System.out.println("               Customer Info               ");
+		System.out.println("-------------------------------------------");
+        	while (rs.next()) System.out.print("ID: " + rs.getInt("ID") + "        Name: " + rs.getString("name") + "\n");
+        
 	}
 	// Jacob
 	public static void browseCustomer() throws SQLException {
 		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
+        	Statement stmt = conn.createStatement();
+        	ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
 
-        System.out.println("                  Customers                ");
+        	System.out.println("                  Customers                ");
 		System.out.println("-------------------------------------------");
-        while (rs.next())  System.out.print("ID: " + rs.getInt("ID") + "        Name: " + rs.getString("name") + "\n");
+        	while (rs.next())  System.out.print("ID: " + rs.getInt("ID") + "        Name: " + rs.getString("name") + "\n");
 		
 	}
 	
@@ -312,24 +312,24 @@ public class loanApp {
 	public static void searchLoan() throws SQLException
 	{
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
-        Statement stmt = conn.createStatement();
-        System.out.println("Input ID of Loan you want to see information of: ");
-        Scanner input2 = new Scanner(System.in);
+        	Statement stmt = conn.createStatement();
+        	System.out.println("Input ID of Loan you want to see information of: ");
+        	Scanner input2 = new Scanner(System.in);
 		int inpu = input2.nextInt();
 		ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan WHERE loan_id =" + inpu); 
-        while (rs.next()) {
-           System.out.println("\nID: " + rs.getInt("ID"));
-           System.out.println(", Name: " + rs.getString("name") + "\n");
-           System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
-           System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
-           System.out.println("Number of Payment: " + rs.getInt("num_payments"));
-           System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
-           System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
-           System.out.println("Start Date: " + rs.getString("start_date"));
-           System.out.println("End Date: " + rs.getString("end_date"));
-           System.out.println("Type of Loan: " + rs.getString("loan_type"));
-           System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
-           System.out.println("--------------------");
+        	while (rs.next()) {
+           		System.out.println("\nID: " + rs.getInt("ID"));
+           		System.out.println(", Name: " + rs.getString("name") + "\n");
+           		System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
+           		System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
+           		System.out.println("Number of Payment: " + rs.getInt("num_payments"));
+           		System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
+           		System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
+           		System.out.println("Start Date: " + rs.getString("start_date"));
+           		System.out.println("End Date: " + rs.getString("end_date"));
+           		System.out.println("Type of Loan: " + rs.getString("loan_type"));
+           		System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
+           		System.out.println("--------------------");
         }
 	}
 	// Tom
@@ -355,25 +355,25 @@ public class loanApp {
 	public static void seeCustomerLoan() throws SQLException
 	{
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
-        Statement stmt = conn.createStatement();
-        System.out.println("Input ID of Customer you want to see loans of: ");
-        Scanner input1 = new Scanner(System.in);
+        	Statement stmt = conn.createStatement();
+        	System.out.println("Input ID of Customer you want to see loans of: ");
+        	Scanner input1 = new Scanner(System.in);
 		int inp = input1.nextInt();
-        ResultSet rs = stmt.executeQuery("SELECT Loan.loan_ID, Loan.loan_amount, Loan.num_payments, Loan.interest_rate, Loan.amount_paid, Loan.start_date, Loan.end_date, Loan.loan_type, Customer.ID, Customer.name FROM Loan INNER JOIN Customer ON Loan.loan_ID = Customer.ID WHERE ID = " + inp); 
+        	ResultSet rs = stmt.executeQuery("SELECT Loan.loan_ID, Loan.loan_amount, Loan.num_payments, Loan.interest_rate, Loan.amount_paid, Loan.start_date, Loan.end_date, Loan.loan_type, Customer.ID, Customer.name FROM Loan INNER JOIN Customer ON Loan.loan_ID = Customer.ID WHERE ID = " + inp); 
 
-        while (rs.next()) {
-           System.out.println("\nID: " + rs.getInt("ID"));
-           System.out.println(", Name: " + rs.getString("name") + "\n");
-           System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
-           System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
-           System.out.println("Number of Payment: " + rs.getInt("num_payments"));
-           System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
-           System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
-           System.out.println("Start Date: " + rs.getString("start_date"));
-           System.out.println("End Date: " + rs.getString("end_date"));
-           System.out.println("Type of Loan: " + rs.getString("loan_type"));
-           System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
-           System.out.println("--------------------");
+        	while (rs.next()) {
+           		System.out.println("\nID: " + rs.getInt("ID"));
+           		System.out.println(", Name: " + rs.getString("name") + "\n");
+           		System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
+           		System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
+           		System.out.println("Number of Payment: " + rs.getInt("num_payments"));
+           		System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
+           		System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
+           		System.out.println("Start Date: " + rs.getString("start_date"));
+           		System.out.println("End Date: " + rs.getString("end_date"));
+           		System.out.println("Type of Loan: " + rs.getString("loan_type"));
+           		System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
+           		System.out.println("--------------------");
         }
 	}
 	
