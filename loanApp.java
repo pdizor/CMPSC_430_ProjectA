@@ -149,8 +149,65 @@ public class loanApp {
            		System.out.println(", Name: " + rs.getString("name") + "\n");
         	}
 	}
+	
 	// Peter
-	public static void addLoan() throws SQLException{}
+	public static void addLoan() throws SQLException{
+	
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Please enter the Customer ID: ");
+		int customer_ID = input.nextInt();
+		
+		System.out.print("Please enter the loan ID: ");
+		int loan_ID = input.nextInt();
+		
+		System.out.print("Please enter the loan amount (USD): ");
+		double loan_amount = input.nextDouble();
+		
+		System.out.print("Please enter the number of payments: ");
+		int num_payments = input.nextInt();
+		
+		System.out.print("Please enter the interest rate (as a decimal): ");
+		double interest_rate = input.nextDouble();
+		
+		System.out.print("Please enter the amount paid (USD): ");
+		double amount_paid = input.nextDouble();
+		
+		System.out.print("Please enter the start date (MM/DD/YYYY): ");
+		String start_date = input.nextLine().trim();
+		
+		System.out.print("Please enter the end date (MM/DD/YYYY): ");
+		String end_date = input.nextLine().trim();
+		
+		System.out.print("Please enter the loan type (1 for Auto, 2 for Mortgage, or 3 for Personal): ");
+		int input_loan_type = input.nextInt();
+		
+		String loan_type = "";
+		if (input_loan_type == 1) loan_type = "Auto";
+		else if (input_loan_type == 2) loan_type = "Mortgage";
+		else if (input_loan_type == 3) loan_type = "Personal";
+		
+		insertStmt = conn.prepareStatement("INSERT INTO Loan " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		insertStmt.setInt(1, loan_ID);
+		insertStmt.setInt(2, customer_ID);
+		insertStmt.setDouble(3, loan_amount);
+		insertStmt.setInt(4, num_payments);
+		insertStmt.setDouble(5, interest_rate);
+		insertStmt.setDouble(6, amount_paid);
+		insertStmt.setString(7, start_date);
+		insertStmt.setString(8, end_date);
+		insertStmt.setString(9, loan_type);
+		insertStmt.executeUpdate();
+		
+		if (input_loan_type == 1) addLoanAuto(loan_ID);
+		else if (input_loan_type == 2) addLoanMortgage(loan_ID);
+		else if (input_loan_type == 3) addLoanPersonal(loan_ID);
+	
+	}
+	
 	// Peter
 	public static void editLoan() throws SQLException{}
 	// Peter
