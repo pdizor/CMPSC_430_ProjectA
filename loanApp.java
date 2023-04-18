@@ -104,34 +104,22 @@ public class loanApp {
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		PreparedStatement deleteStmt1 = null;
 		PreparedStatement deleteStmt2 = null;
-		PreparedStatement deleteStmt3 = null;
-		PreparedStatement deleteStmt4 = null;
-		PreparedStatement deleteStmt5 = null;
 		
 		System.out.print("Please enter the customer's ID that you wish to remove: ");
 		Scanner inputId = new Scanner(System.in);
 		int id = inputId.nextInt();
 		
 		deleteStmt1 = conn.prepareStatement("DELETE FROM Customer WHERE ID = ?"); 
-		deleteStmt2 = conn.prepareStatement("DELETE FROM Loan WHERE loan_ID = ?"); 
-		deleteStmt3 = conn.prepareStatement("DELETE FROM Auto_Loan WHERE loan_ID = ?"); 
-		deleteStmt4 = conn.prepareStatement("DELETE FROM Personal_Loan WHERE loan_ID = ?"); 
-		deleteStmt5 = conn.prepareStatement("DELETE FROM Mortgage_Loan WHERE loan_ID = ?"); 
+		deleteStmt2 = conn.prepareStatement("DELETE FROM Loan WHERE customer_ID = ?"); 
 		
 		deleteStmt1.setInt(1, id); 
 		deleteStmt2.setInt(1, id); 
-		deleteStmt3.setInt(1, id); 
-		deleteStmt4.setInt(1, id); 
-		deleteStmt5.setInt(1, id); 
 		
-		int res1, res2, res3, res4, res5;
+		int res1, res2;
 		res1 = deleteStmt1.executeUpdate(); 
 		res2 = deleteStmt2.executeUpdate(); 
-		res3 = deleteStmt3.executeUpdate(); 
-		res4 = deleteStmt4.executeUpdate();  
-		res5 = deleteStmt5.executeUpdate(); 
 		
-		if(res1 == 0 && res2 == 0 && res3 == 0 && res4 == 0 && res5 == 0) System.out.println("The customer ID was not found. Please try again.");
+		if(res1 == 0 && res2 == 0) System.out.println("The customer ID was not found. Please try again.");
 		else System.out.println("The customer with an ID of " + id + " was removed from the system.");
 		
 	}
