@@ -125,7 +125,29 @@ public class loanApp {
 	// Peter
 	public static void removeLoan() throws SQLException{}
 	// Peter 
-	public static void searchLoan() throws SQLException{}
+	public static void searchLoan() throws SQLException
+	{
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+        Statement stmt = conn.createStatement();
+        Scanner input1 = new Scanner(System.in);
+		int inp = input1.nextInt();
+        ResultSet rs = stmt.executeQuery("SELECT Loan.loan_ID, Loan.loan_amount, Loan.num_payments, Loan.interest_rate, Loan.amount_paid, Loan.start_date, Loan.end_date, Loan.loan_type, Customer.ID, Customer.name FROM Loan INNER JOIN Customer ON Loan.loan_ID = Customer.ID WHERE ID = " + inp); 
+
+        while (rs.next()) {
+           System.out.print("\nID: " + rs.getInt("ID"));
+           System.out.print(", Name: " + rs.getString("name") + "\n");
+           System.out.print("\nLoan ID: " + rs.getInt("loan_ID"));
+           System.out.print("Loan Amount: " + rs.getDouble("loan_amount"));
+           System.out.print("Number of Payment: " + rs.getInt("num_payments"));
+           System.out.print("Interest Rate: " + rs.getDouble("interest_rate"));
+           System.out.print("Amount Paid: " + rs.getDouble("amount_paid"));
+           System.out.print("Start Date: " + rs.getString("start_date"));
+           System.out.print("End Date: " + rs.getString("end_date"));
+           System.out.print("Type of Loan: " + rs.getString("loan_type"));
+           System.out.print("Loan Type: " + rs.getString("loan_type") + "\n");
+           System.out.print("--------------------");
+        }
+	}
 	// Tom
 	public static void browseLoan() throws SQLException{
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
