@@ -7,13 +7,29 @@ public class loanApp {
 	
 	public static void main(String args[]) {
 		connectToDB();
-		
+		System.out.println("********************************************");
 		System.out.println("Welcome to our Loan Management Application!");
+		System.out.println("********************************************\n");
 		boolean run = true;
 		while(run) {
 			System.out.println("Please enter a number to select an option.");
+			System.out.println("-------------------------------------------");
+			System.out.println("1: Add a Customer");
+			System.out.println("2: Edit Customer Information");
+			System.out.println("3: Remove a Customer");
+			System.out.println("4: Search for a Customer");
+			System.out.println("5: Browse List of Customers");
+			System.out.println("6: Add a Loan");
+			System.out.println("7: Edit Loan Information");
+			System.out.println("8: Remove a Loan");
+			System.out.println("9: Search for a Loan");
+			System.out.println("10: Browse for a Loan");
+			System.out.println("11: See a Customer Loan");
+			System.out.println("12: Exit Program\n");
+			System.out.println("Input:");
 			Scanner input = new Scanner(System.in);
 			int choice = input.nextInt();
+			
 			
 			
 			
