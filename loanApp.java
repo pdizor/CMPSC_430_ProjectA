@@ -145,13 +145,13 @@ public class loanApp {
 	public static void browseCustomer() throws SQLException {
 		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
-        	Statement stmt = conn.createStatement();
-        	ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
 
-        	while (rs.next()) {
-           		System.out.println("\nID: " + rs.getInt("ID"));
-           		System.out.println(", Name: " + rs.getString("name") + "\n");
-        	}
+        System.out.println("                  Customers                ");
+		System.out.println("-------------------------------------------");
+        while (rs.next())  System.out.print("ID: " + rs.getInt("ID") + "        Name: " + rs.getString("name") + "\n");
+		
 	}
 	
 	// Peter
