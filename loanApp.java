@@ -146,8 +146,8 @@ public class loanApp {
         ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
 
         while (rs.next()) {
-           System.out.print("\nID: " + rs.getInt("ID"));
-           System.out.print(", Name: " + rs.getString("name") + "\n");
+           System.out.println("\nID: " + rs.getInt("ID"));
+           System.out.println(", Name: " + rs.getString("name") + "\n");
         }
 	}
 	// Jacob
@@ -157,8 +157,8 @@ public class loanApp {
         	ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
 
         	while (rs.next()) {
-           		System.out.print("\nID: " + rs.getInt("ID"));
-           		System.out.print(", Name: " + rs.getString("name") + "\n");
+           		System.out.println("\nID: " + rs.getInt("ID"));
+           		System.out.println(", Name: " + rs.getString("name") + "\n");
         	}
 	}
 	// Peter
@@ -177,18 +177,18 @@ public class loanApp {
 		int inpu = input2.nextInt();
 		ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan WHERE loan_id =" + inpu); 
         while (rs.next()) {
-           System.out.print("\nID: " + rs.getInt("ID"));
-           System.out.print(", Name: " + rs.getString("name") + "\n");
-           System.out.print("\nLoan ID: " + rs.getInt("loan_ID"));
-           System.out.print("Loan Amount: " + rs.getDouble("loan_amount"));
-           System.out.print("Number of Payment: " + rs.getInt("num_payments"));
-           System.out.print("Interest Rate: " + rs.getDouble("interest_rate"));
-           System.out.print("Amount Paid: " + rs.getDouble("amount_paid"));
-           System.out.print("Start Date: " + rs.getString("start_date"));
-           System.out.print("End Date: " + rs.getString("end_date"));
-           System.out.print("Type of Loan: " + rs.getString("loan_type"));
-           System.out.print("Loan Type: " + rs.getString("loan_type") + "\n");
-           System.out.print("--------------------");
+           System.out.println("\nID: " + rs.getInt("ID"));
+           System.out.println(", Name: " + rs.getString("name") + "\n");
+           System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
+           System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
+           System.out.println("Number of Payment: " + rs.getInt("num_payments"));
+           System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
+           System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
+           System.out.println("Start Date: " + rs.getString("start_date"));
+           System.out.println("End Date: " + rs.getString("end_date"));
+           System.out.println("Type of Loan: " + rs.getString("loan_type"));
+           System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
+           System.out.println("--------------------");
         }
 	}
 	// Tom
@@ -198,16 +198,16 @@ public class loanApp {
         	ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan"); 
 
         	while (rs.next()) {
-           		System.out.print("\nLoan ID: " + rs.getInt("loan_ID"));
-           		System.out.print("Loan Amount: " + rs.getDouble("loan_amount"));
-           		System.out.print("Number of Payment: " + rs.getInt("num_payments"));
-           		System.out.print("Interest Rate: " + rs.getDouble("interest_rate"));
-           		System.out.print("Amount Paid: " + rs.getDouble("amount_paid"));
-           		System.out.print("Start Date: " + rs.getString("start_date"));
-           		System.out.print("End Date: " + rs.getString("end_date"));
-           		System.out.print("Type of Loan: " + rs.getString("loan_type"));
-           		System.out.print("Loan Type: " + rs.getString("loan_type") + "\n");
-           		System.out.print("--------------------");
+           		System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
+           		System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
+           		System.out.println("Number of Payment: " + rs.getInt("num_payments"));
+           		System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
+           		System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
+           		System.out.println("Start Date: " + rs.getString("start_date"));
+           		System.out.println("End Date: " + rs.getString("end_date"));
+           		System.out.println("Type of Loan: " + rs.getString("loan_type"));
+           		System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
+           		System.out.println("--------------------");
         	}
 	}
 	
@@ -221,18 +221,18 @@ public class loanApp {
         ResultSet rs = stmt.executeQuery("SELECT Loan.loan_ID, Loan.loan_amount, Loan.num_payments, Loan.interest_rate, Loan.amount_paid, Loan.start_date, Loan.end_date, Loan.loan_type, Customer.ID, Customer.name FROM Loan INNER JOIN Customer ON Loan.loan_ID = Customer.ID WHERE ID = " + inp); 
 
         while (rs.next()) {
-           System.out.print("\nID: " + rs.getInt("ID"));
-           System.out.print(", Name: " + rs.getString("name") + "\n");
-           System.out.print("\nLoan ID: " + rs.getInt("loan_ID"));
-           System.out.print("Loan Amount: " + rs.getDouble("loan_amount"));
-           System.out.print("Number of Payment: " + rs.getInt("num_payments"));
-           System.out.print("Interest Rate: " + rs.getDouble("interest_rate"));
-           System.out.print("Amount Paid: " + rs.getDouble("amount_paid"));
-           System.out.print("Start Date: " + rs.getString("start_date"));
-           System.out.print("End Date: " + rs.getString("end_date"));
-           System.out.print("Type of Loan: " + rs.getString("loan_type"));
-           System.out.print("Loan Type: " + rs.getString("loan_type") + "\n");
-           System.out.print("--------------------");
+           System.out.println("\nID: " + rs.getInt("ID"));
+           System.out.println(", Name: " + rs.getString("name") + "\n");
+           System.out.println("\nLoan ID: " + rs.getInt("loan_ID"));
+           System.out.println("Loan Amount: " + rs.getDouble("loan_amount"));
+           System.out.println("Number of Payment: " + rs.getInt("num_payments"));
+           System.out.println("Interest Rate: " + rs.getDouble("interest_rate"));
+           System.out.println("Amount Paid: " + rs.getDouble("amount_paid"));
+           System.out.println("Start Date: " + rs.getString("start_date"));
+           System.out.println("End Date: " + rs.getString("end_date"));
+           System.out.println("Type of Loan: " + rs.getString("loan_type"));
+           System.out.println("Loan Type: " + rs.getString("loan_type") + "\n");
+           System.out.println("--------------------");
         }
 	}
 	
