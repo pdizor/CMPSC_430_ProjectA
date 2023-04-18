@@ -14,6 +14,7 @@ create table Customer(
 
 create table Loan(
 	loan_ID int,
+	customer_ID int,
 	loan_amount numeric(10, 2) not null,
 	num_payments int not null,
 	interest_rate numeric(2, 2) not null 
@@ -25,7 +26,8 @@ create table Loan(
 		check (loan_type like 'Auto' or 
 		       loan_type like 'Mortgage' or
                loan_type like 'Personal'),
-	primary key (loan_ID)
+	primary key (loan_ID),
+	foregin key (customer_ID) references Customer(ID)
 	);
 	
 create table Auto_Loan(
@@ -34,7 +36,7 @@ create table Auto_Loan(
 	model varchar(20) not null,
 	manufac_year numeric(4, 0) not null,
 	primary key (loan_ID),
-	foreign key (loan_ID) references Loan
+	foreign key (loan_ID) references Loan(loan_ID)
 	);
 	
 create table Mortgage_Loan(
@@ -49,13 +51,13 @@ create table Mortgage_Loan(
 	house_price numeric(10, 2)
 		check (house_price >= 0),
 	primary key (loan_ID),
-	foreign key (loan_ID) references Loan
+	foreign key (loan_ID) references Loan(loan_ID)
 	);
 	
 create table Personal_Loan(
 	loan_ID int,
 	loan_purpose varchar(250) not null,
 	primary key (loan_ID),
-	foreign key (loan_ID) references Loan
+	foreign key (loan_ID) references Loan(loan_ID)
 	);
 	
