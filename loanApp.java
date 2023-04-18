@@ -1,21 +1,21 @@
-package sql430;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
-import java.sql.*;
-public class loanApp {
-	static final String QUERY1 = "SELECT ID, name FROM Customer";
 
-	public static void main(String args[]) {
-		connectToDB();
+public class loanApp {
+	
+	public static void main(String args[]) throws SQLException {
+		
 		System.out.println("********************************************");
 		System.out.println("Welcome to our Loan Management Application!");
-		System.out.println("********************************************\n");
+		System.out.println("********************************************");
 		boolean run = true;
 		while(run) {
-			System.out.println("Please enter a number to select an option.");
+			System.out.println("\nPlease enter a number to select an option.");
 			System.out.println("-------------------------------------------");
 			System.out.println("1: Add a Customer");
 			System.out.println("2: Edit Customer Information");
@@ -31,10 +31,7 @@ public class loanApp {
 			System.out.println("12: Exit Program\n");
 			System.out.println("Input:");
 			Scanner input = new Scanner(System.in);
-			int choice = input.nextInt();
-			
-			
-			
+			int choice = input.nextInt();		
 			
 			switch (choice) {
 			case 1: addCustomer();
@@ -59,60 +56,46 @@ public class loanApp {
 			break;
 			case 11: seeCustomerLoan();
 			break;
-			case 12: System.exit(0);
+			case 12: exitProgram();
 			break;
 			}
 		}
 	}
 	
-	public static void connectToDB() {
-		String dbUrl = "jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu"; 
-		String username = "jxb718";
-		String password = "Jakeawesome4202";
+	public static void addCustomer() throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
 		
-		
-		try {
-			Connection conn = DriverManager.getConnection(dbUrl, username, password);
-			if(conn != null) System.out.println("You are connected!");
-		}
-		catch (SQLException error) {
-			error.printStackTrace();
-		}
+		insertStmt = conn.prepareStatement("INSERT INTO Customer (ID, Name)" + "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+		insertStmt.setInt(1, 0000);
+		insertStmt.setString(2, "John Doe");
+		insertStmt.executeUpdate();
+	
 	}
+	public static void editCustomer() throws SQLException{}
+	public static void removeCustomer() throws SQLException{}
+	public static void searchCustomer() throws SQLException{}
+	public static void browseCustomer() throws SQLException {
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
 
-	
-	public static void addCustomer() {}
-	public static void editCustomer() {}
-	public static void removeCustomer() {}
-	public static void searchCustomer() {}
-	public static void browseCustomer() 
-	{
-		String dbUrl = "jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu"; 
-		String username = "jxb718";
-		String password = "Jakeawesome4202";
-	
-		try(Connection conn = DriverManager.getConnection(dbUrl, username, password);
-		         Statement stmt = conn.createStatement();
-		         ResultSet rs = stmt.executeQuery(QUERY1);) {
-		         // Extract data from result set
-		         while (rs.next()) {
-		            // Retrieve by column name
-		            System.out.print("ID: " + rs.getInt("ID"));
-		            System.out.print(", Name: " + rs.getInt("name"));
-		            
-		         }
-		      } catch (SQLException e) {
-		         e.printStackTrace();
-		      } 
-	
+        while (rs.next()) {
+           System.out.print("\nID: " + rs.getInt("ID"));
+           System.out.print(", Name: " + rs.getString("name") + "\n");
+        }
 	}
 	
-	public static void addLoan() {}
-	public static void editLoan() {}
-	public static void removeLoan() {}
-	public static void searchLoan() {}
-	public static void browseLoan() {}
+	public static void addLoan() throws SQLException{}
+	public static void editLoan() throws SQLException{}
+	public static void removeLoan() throws SQLException{}
+	public static void searchLoan() throws SQLException{}
+	public static void browseLoan() throws SQLException{}
 	
-	public static void seeCustomerLoan() {}
+	public static void seeCustomerLoan() throws SQLException{}
 	
+	public static void exitProgram() {
+		System.out.println("Thanks for using our Loan Management Application!");
+		System.exit(0);
+	}
 }
