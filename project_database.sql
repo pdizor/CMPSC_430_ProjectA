@@ -27,7 +27,7 @@ create table Loan(
 		       loan_type like 'Mortgage' or
                loan_type like 'Personal'),
 	primary key (loan_ID),
-	foregin key (customer_ID) references Customer(ID)
+	foreign key (customer_ID) references Customer(ID)
 	);
 	
 create table Auto_Loan(
