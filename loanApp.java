@@ -287,7 +287,26 @@ public class loanApp {
 	}
 	
 	// Peter
-	public static void editLoan() throws SQLException{}
+	public static void makePayment() throws SQLException{
+		
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Please enter in the loan_ID: ");
+		int loan_ID = input.nextInt();
+		
+		System.out.println("Please enter in the payment amount (USD): ");
+		double payment_amount = input.nextDouble();
+		
+		String query = "UPDATE Loan SET amount_paid = amount_paid +" + payment_amount + " and num_payments = num_payments + 1 WHERE ID =  " + id;
+		
+		updateStmt = conn.createStatement();
+		updateStmt.executeUpdate(query);
+		
+	}
+	
 	// Peter
 	public static void removeLoan() throws SQLException{
 		
