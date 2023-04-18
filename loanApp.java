@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -67,15 +66,41 @@ public class loanApp {
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		PreparedStatement insertStmt = null;
 		
+		System.out.print("Please enter the customer's ID: ");
+		Scanner inputId = new Scanner(System.in);
+		int id = inputId.nextInt();
+		
+		System.out.print("Please enter the customer's name: ");
+		Scanner inputName = new Scanner(System.in);
+		String name = inputName.nextLine().trim();
+		
 		insertStmt = conn.prepareStatement("INSERT INTO Customer (ID, Name)" + "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-		insertStmt.setInt(1, 0000);
-		insertStmt.setString(2, "John Doe");
+		insertStmt.setInt(1, id);
+		insertStmt.setString(2, name);
 		insertStmt.executeUpdate();
 	
 	}
-	public static void editCustomer() throws SQLException{}
+	public static void editCustomer() throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		Statement updateStmt = null;
+		
+		System.out.print("Please enter the customer's ID that you wish to edit: ");
+		Scanner inputId = new Scanner(System.in);
+		int id = inputId.nextInt();
+		
+		System.out.print("Please enter the customer's new name: ");
+		Scanner inputName = new Scanner(System.in);
+		String name = inputName.nextLine().trim();
+		
+		String query = "UPDATE Customer SET name ='" + name + "'WHERE ID =  '" + id + "'";
+		
+		updateStmt = conn.createStatement();
+		updateStmt.executeUpdate(query);
+		
+	}
 	public static void removeCustomer() throws SQLException{}
 	public static void searchCustomer() throws SQLException{}
+	
 	public static void browseCustomer() throws SQLException {
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
         Statement stmt = conn.createStatement();
@@ -91,8 +116,7 @@ public class loanApp {
 	public static void editLoan() throws SQLException{}
 	public static void removeLoan() throws SQLException{}
 	public static void searchLoan() throws SQLException{}
-	public static void browseLoan() throws SQLException
-	{
+	public static void browseLoan() throws SQLException{
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan"); 
