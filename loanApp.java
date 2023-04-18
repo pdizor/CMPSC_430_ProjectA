@@ -143,6 +143,7 @@ public class loanApp {
 	}
 	// Jacob
 	public static void browseCustomer() throws SQLException {
+		
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
         	Statement stmt = conn.createStatement();
         	ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer"); 
@@ -214,7 +215,25 @@ public class loanApp {
 	// Peter
 	public static void editLoan() throws SQLException{}
 	// Peter
-	public static void removeLoan() throws SQLException{}
+	public static void removeLoan() throws SQLException{
+		
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement deleteStmt1 = null;
+		
+		System.out.print("Please enter the loan's ID that you wish to remove: ");
+		Scanner inputId = new Scanner(System.in);
+		int id = inputId.nextInt();
+
+		deleteStmt1 = conn.prepareStatement("DELETE FROM Loan WHERE loan_ID = ?"); 
+		
+		deleteStmt1.setInt(1, id); 
+		
+		int res1 = deleteStmt1.executeUpdate(); 
+		
+		if(res1 == 0) System.out.println("The loan ID was not found. Please try again.");
+		else System.out.println("The loan with an ID of " + id + " was removed from the system.");
+		
+	}
 	// Peter 
 	public static void searchLoan() throws SQLException
 	{
@@ -285,7 +304,9 @@ public class loanApp {
 	}
 	
 	public static void exitProgram() {
+		
 		System.out.println("Thanks for using our Loan Management Application!");
 		System.exit(0);
+		
 	}
 }
