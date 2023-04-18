@@ -136,8 +136,19 @@ public class loanApp {
 		
 	}
 	//Jacob
-	public static void searchCustomer() throws SQLException{
-	
+	public static void searchCustomer() throws SQLException
+	{
+	Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+        Statement stmt = conn.createStatement();
+        System.out.println("Input ID of Customer you want to see information of: ");
+        Scanner input3 = new Scanner(System.in);
+		int inputs = input3.nextInt();
+        ResultSet rs = stmt.executeQuery("SELECT ID, name FROM Customer WHERE ID =" + inputs); 
+
+        while (rs.next()) {
+           System.out.print("\nID: " + rs.getInt("ID"));
+           System.out.print(", Name: " + rs.getString("name") + "\n");
+        }
 	}
 	// Jacob
 	public static void browseCustomer() throws SQLException {
@@ -164,7 +175,7 @@ public class loanApp {
         System.out.println("Input ID of Loan you want to see information of: ");
         Scanner input2 = new Scanner(System.in);
 		int inpu = input2.nextInt();
-		ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan WHERE Loan =" + inpu); 
+		ResultSet rs = stmt.executeQuery("SELECT loan_ID, loan_amount, num_payments, interest_rate, amount_paid, start_date, end_date, loan_type FROM Loan WHERE loan_id =" + inpu); 
         while (rs.next()) {
            System.out.print("\nID: " + rs.getInt("ID"));
            System.out.print(", Name: " + rs.getString("name") + "\n");
