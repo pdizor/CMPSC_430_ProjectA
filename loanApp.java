@@ -211,7 +211,7 @@ public class loanApp {
 		else if (input_loan_type == 3) addLoanPersonal(loan_ID);
 	
 	}
-		public static void addLoanAuto (int loan_ID) throws SQLException
+	public static void addLoanAuto (int loan_ID) throws SQLException
 	{
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
 		PreparedStatement insertStmt = null;
@@ -236,6 +236,41 @@ public class loanApp {
 		insertStmt.setString(4, year);
 		insertStmt.executeUpdate();
 	}
+	
+	// Peter
+	public static void addLoanMortgage(int loan_ID) {
+	
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu", "jxb718", "Jakeawesome4202");
+		PreparedStatement insertStmt = null;
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Please enter the house address: ");
+		String house_address = input.nextLine().trim();
+		
+		System.out.print("Please enter the house area: ");
+		int house_area = input.nextInt();
+		
+		System.out.print("Please enter the number of bedrooms: ");
+		int num_bedrooms = input.nextInt();
+		
+		System.out.print("Please enter the number of bathrooms: ");
+		int num_bathrooms = input.nextInt();
+		
+		System.out.print("Please enter the price of the house (USD): ");
+		double house_price = input.nextDouble();
+		
+		insertStmt = conn.prepareStatement("INSERT INTO Mortgage_Loan " + "VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		insertStmt.setInt(1, loan_ID);
+		insertStmt.setString(2, house_address);
+		insertStmt.setInt(3, house_area);
+		insertStmt.setInt(4, num_bedrooms);
+		insertStmt.setInt(5, num_bathrooms);
+		insertStmt.setDouble(6, house_price);
+		insertStmt.executeUpdate();
+		
+	}
+	
 	// Peter
 	public static void editLoan() throws SQLException{}
 	// Peter
