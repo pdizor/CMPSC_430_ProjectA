@@ -1,10 +1,13 @@
+package sql430;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
-
+import java.sql.*;
 public class loanApp {
-	
+	static final String QUERY1 = "SELECT ID, name FROM Customer";
+
 	public static void main(String args[]) {
 		connectToDB();
 		System.out.println("********************************************");
@@ -66,10 +69,10 @@ public class loanApp {
 		String dbUrl = "jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu"; 
 		String username = "jxb718";
 		String password = "Jakeawesome4202";
-		Connection conn = null;
+		
 		
 		try {
-			conn = DriverManager.getConnection(dbUrl, username, password);
+			Connection conn = DriverManager.getConnection(dbUrl, username, password);
 			if(conn != null) System.out.println("You are connected!");
 		}
 		catch (SQLException error) {
@@ -82,7 +85,27 @@ public class loanApp {
 	public static void editCustomer() {}
 	public static void removeCustomer() {}
 	public static void searchCustomer() {}
-	public static void browseCustomer() {}
+	public static void browseCustomer() 
+	{
+		String dbUrl = "jdbc:oracle:thin:@h3oracle.ad.psu.edu:1521/orclpdb.ad.psu.edu"; 
+		String username = "jxb718";
+		String password = "Jakeawesome4202";
+	
+		try(Connection conn = DriverManager.getConnection(dbUrl, username, password);
+		         Statement stmt = conn.createStatement();
+		         ResultSet rs = stmt.executeQuery(QUERY1);) {
+		         // Extract data from result set
+		         while (rs.next()) {
+		            // Retrieve by column name
+		            System.out.print("ID: " + rs.getInt("ID"));
+		            System.out.print(", Name: " + rs.getInt("name"));
+		            
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } 
+	
+	}
 	
 	public static void addLoan() {}
 	public static void editLoan() {}
