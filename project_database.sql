@@ -20,14 +20,14 @@ create table Loan(
 	interest_rate numeric(2, 2) not null 
 		check (interest_rate > 0 and interest_rate <= 1),
 	amount_paid numeric(10, 2),
-	start_date date not null,
-	end_date date not null,
+	start_date varchar(20) not null,
+	end_date varchar(20) not null,
 	loan_type varchar(10) not null
 		check (loan_type like 'Auto' or 
 		       loan_type like 'Mortgage' or
                loan_type like 'Personal'),
 	primary key (loan_ID),
-	foreign key (customer_ID) references Customer(ID)
+	foreign key (customer_ID) references Customer(ID) ON DELETE CASCADE
 	);
 	
 create table Auto_Loan(
